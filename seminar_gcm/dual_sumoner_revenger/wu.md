@@ -82,9 +82,9 @@ len_nonce = random.randint(1, 11)
 ### Forbidden attack to a nonce collision 
 - Give many plaintext for summon to achive correspond cihpertext adn tag 
 - With plaintex $P_i$ , $P_j$ and corresponding ciphertext $C_i$ , $C_j$ .If :
-- $$
-  P_i - C_i = P_j - C_j 
-  $$
+  
+- $$P_i - C_i = P_j - C_j $$
+
   - => Nonce collision 
   
   - Then we can use forbidden attack to find corresponding hash key H 
@@ -98,21 +98,16 @@ len_nonce = random.randint(1, 11)
 - For $K_2$ , implemet like above and we can find $H_2$  and $Mask_2$ corresponding to the nonce in collision 
 - To solve dual_summon ,assume that two nonce that the function choose is corresponding to $Mask_1$ and $Mask_2$ 
   - =>  we need to find a plaintext $P$ (16 bytes) s.t:
-$$
-tag1 = tag2 
-$$
-$$
-<=> C_1 \cdot H_1^2 + lenblock \cdot H_1 + Mask_1 =  C_2 \cdot H_2^2 + lenblock \cdot H_2 + Mask_2
-$$
-$$
-<=> (P + Ks_1)\cdot H_1^2 + lenblock \cdot H_1 + Mask_1 = (P + Ks_2)\cdot H_2^2 + lenblock \cdot H_2 + Mask_2  
-$$
-$$
-<=> P \cdot H_1^2 + const1 = P \cdot H_2^2 + const2 
-$$
-$$
-P = \frac{const2 - const1}{H_1^2 - H_2^2}
-$$
+  
+$$tag1 = tag2 $$
+
+$$<=> C_1 \cdot H_1^2 + lenblock \cdot H_1 + Mask_1 =  C_2 \cdot H_2^2 + lenblock \cdot H_2 + Mask_2$$
+
+$$<=> (P + Ks_1)\cdot H_1^2 + lenblock \cdot H_1 + Mask_1 = (P + Ks_2)\cdot H_2^2 + lenblock \cdot H_2 + Mask_2$$
+
+$$<=> P \cdot H_1^2 + const1 = P \cdot H_2^2 + const2 $$
+
+$$P = \frac{const2 - const1}{H_1^2 - H_2^2}$$
 
 - So we can compute $P$ like that 
 - **But can two nonce that the function choose is corresponding to $Mask_1$ and $Mask_2$** ?
