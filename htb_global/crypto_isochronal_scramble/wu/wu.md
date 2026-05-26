@@ -102,27 +102,33 @@ def CGL_hash(E0, data):
 - Ta đã có đường đi , vậy liệu với $E_{512}$ thì có xuất hiện 1 đường đi lùi dựa trên data để tìm về $E_0$ được ko 
 ### 2.2.1 Điểm cuối trên đường cong  $E_{512}$ về $E_{511}$ 
 - Để tìm $A_{511}$ và $\alpha_{511}$ từ đường cong $E_{512}$ ta lập hệ:
+  
 $$
 \begin{cases}
 A_{512} = - 4 A_{511} - 15 \alpha_{511}^2 \\
 B_{512} = - \alpha_{511}(8 A_{511} + 22 \alpha_{511}^2)
 \end{cases}
 $$
+
 $$
 => 8 \alpha_{512}^3 - 2 A_{512} \alpha_{511} - B_{512} = 0
 $$
+
 - => Ta được 2 nghiệm $\alpha_{511}$ ( trừ $\alpha_{511}$= 0) , từ đó có 2 đường cong $E_{511}$ khi đi từ $E_{512}$ về 1 bước 
 - => Ta có thể thử bước lùi tiếp từ 2 đường cong $E_{511}$ này này (thử cả 2 nhánh ) 
 
 ### 2.2.2 Bước cuối tìm $E_0$ 
 - Giả sử ta có thể nối chuỗi đi ngược về đến tận điểm $E_0$ và ta tìm được $A_0$ và $\alpha_0$
 * Ta sẽ khôi phục $B_0$ như sau , từ phương trinh:
+  
 $$
 \alpha_0 ^2 + A_0 \alpha_0+ B_0 =0
 $$
+
 $$
 => B_0 = - \alpha_0^2 - A_0 \alpha_0  
 $$
+
 - Nhưng ta ko chắc rằng $\alpha_0$ có thỏa mãn hàm **select0** hay ko => ta cần phải check
 
 - => rất có thể đường đi sẽ đứt khi đi được đến cuối 
@@ -130,13 +136,15 @@ $$
 ### 2.2.3 vấn đề thực sự nằm ở các node trung gian trên đường đi 
 **Ý tưởng về tìm đường đi lùi từ một đường cong** 
 
-- Với phương trình tìm next curve mà challenge cho , ta có thể xây dựng phương trình để tính prev curve như sau : 
+- Với phương trình tìm next curve mà challenge cho , ta có thể xây dựng phương trình để tính prev curve như sau :
+  
 $$
 \begin{cases}
 \alpha_{n} = \alpha_{n-1} \pm2 \cdot \min(\sqrt{3 \alpha^2 + A_{n-1}})\\
 A_n = -(4 A_{n-1} + 15 \alpha_{n-1}^2)
 \end{cases}
 $$
+
 $$
 =>
 \begin{cases}
@@ -144,9 +152,11 @@ A_{n-1} = - \frac{(A_n + 15 \alpha_n^2)}{4}\\
 \alpha_n - \alpha_{n-1} = 2 \cdot \min(\sqrt{3 \alpha^2 - \frac{(A_n + 15 \alpha_n^2)}{4}})
 \end{cases}
 $$
+
 $$
 => (\alpha_n - \alpha_{n-1})^2 = 12 \alpha_{n-1}^2 - A_{n} - 15 \alpha_{n-1}^2
 $$
+
 $$
 => 4 \alpha_{n-1}^2 - 2 \alpha_n \alpha_{n-1} + (A_n + \alpha_n^2) = 0 
 $$
@@ -174,12 +184,14 @@ $$
 thể
 #### Đánh giá về số đường đi lùi có thể của các đường cong trung gian 
 - Với 2 nghiệm $\alpha_1$ và $\alpha_2$ và 2 giá trị $A_1$ và $A_2$ ta giải được , ta thay lại vào phương trình , ta được các biểu thức :
+  
 $$
 \begin{cases}
 (\alpha_{n} - \alpha_{1})^2 = 4(3\alpha_{1}^2 - A_{1}) \\
 (\alpha_{n} - \alpha_{2})^2 = 4(3\alpha_{2}^2 - A_{2})
 \end{cases}
 $$
+
 $$
 => 
 \begin{cases}
