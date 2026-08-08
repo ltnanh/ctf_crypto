@@ -1,0 +1,22 @@
+import sys
+import os 
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from chal import LinearChaCha20, DoubleLinearCipher
+
+IV1_HEX = "61307e136d4e91b164f64305"
+IV2_HEX = "9e4ba797f244f1a25f57ba9e"
+CIPHERTEXT_FULL_HEX = "e09027862008500300e2412201100b00125005100840400c3da07222a902a444a042d981007e4218c201464549410001046010508700b20444600003c2389444cc9014840000d1335056682200a0400012e1051c68d1000cac2442029012a12088024144221610108b02d68490416c80226010518300d114d14a40008075dc462888050a2008401c4034012c05004202127624182851420ca0a65212380584f2a0c2c804003100108b03460000402820806010518030008550404002824c0447d2932145637bdfa23a794d316e2322784de51172609e31e27d35476094ee7abf19e62af0599960bb3474a5337c" 
+
+
+key1 = bytes.fromhex(input("Enter key1 (hex): "))
+key2 = bytes.fromhex(input("Enter key2 (hex): "))
+iv1 = bytes.fromhex(IV1_HEX)
+iv2 = bytes.fromhex(IV2_HEX)
+cpt = bytes.fromhex(CIPHERTEXT_FULL_HEX)
+
+cipher = DoubleLinearCipher(key1, key2, iv1, iv2)
+plaintext = cipher.decrypt(cpt)
+flag = plaintext[192:]  
+print(flag)
+
