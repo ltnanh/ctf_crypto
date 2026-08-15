@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  encrypted-product-service:
+    build: .
+    ports:
+      - "5555:5555"
+    restart: unless-stopped
+    environment:
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
