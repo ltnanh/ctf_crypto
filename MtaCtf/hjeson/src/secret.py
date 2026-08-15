@@ -1,1 +1,0 @@
-FLAG = "MTA60{this_is_flag}"
