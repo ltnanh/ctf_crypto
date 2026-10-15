@@ -1,0 +1,10 @@
+[package]
+name = "once_or_nothing"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = "0.9"
+crypto-bigint = { version = "0.7.0", features = ["rand_core"] }
+sha2 = "0.10.9"
+hex = "0.4.3"
